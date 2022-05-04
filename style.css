@@ -55,3 +55,17 @@ table,tr{
     text-align: center;
     background-color: aliceblue;
 }
+td{
+    padding: 4px;
+}
+
+
+
+.delete{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 1px;
+    border-radius: 5px;
+    font-weight: bold;
+}
