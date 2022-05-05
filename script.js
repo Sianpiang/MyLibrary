@@ -51,14 +51,26 @@ function deleteBook(ele){
     }
 }
 
-function bookStatus(book){
-    if(MyLibrary[book].haveread === "Read"){
-        MyLibrary[book].haveread = "Not Read";
+function bookstatus(info){
+    console.log(MyLibrary[info].haveread);
+    if(MyLibrary[info].haveread === "Read"){
+        MyLibrary[info].haveread = "Not Read";
     }
     else{
-        MyLibrary[book].haveread = "Read"; 
+        MyLibrary[info].haveread = " Read";
     }
 }
+
+function findBook(libraryArray, name) {
+    if (libraryArray.length === 0 || libraryArray === null) {
+      return;
+    }
+    for(item of libraryArray){
+        if(item.title === name){
+            return libraryArray.indexOf(item);
+        }
+    }
+  }
 
 //Displaying the Books
 document.addEventListener('DOMContentLoaded', displayBook());
@@ -72,12 +84,14 @@ document.querySelector("#form-bolte").addEventListener('submit',(e)=>{
     const haveread = document.querySelector("#haveread").value;
 
     const book = new Books(title,author,pageNo,haveread);
-    
+    MyLibrary.push(book);
+    console.log(MyLibrary);
     //Adding the books
     addBooks(book);
 
     //Clearing the field
     clearField();
+
 })
 
 //Delete function
@@ -86,9 +100,16 @@ document.querySelector(".myList").addEventListener('click',(e)=>{
     deleteBook(e.target);
 })
 
-document.querySelector(".myList").addEventListener('click',(e)=>{
-    bookStatus(e.target);
+//book status update
+document.querySelector("table").addEventListener('click',(e)=>{
+    const currentTarget = e.target.parentNode.parentNode.childNodes[1];
+    // console.log(currentTarget.innerHTML);
+    if(e.target.classList.contains('status')){
+        bookstatus(findBook(MyLibrary,currentTarget.innerHTML));
+    }
 })
+
+
 
 
 

@@ -40,7 +40,7 @@ form label select{
 
 form input[type="submit"]{
     padding: 5px 250px;
-    background-color: lightblue;
+    background-color: blue;
     border: none;
     font-size: 1.3rem;
     color: white;
